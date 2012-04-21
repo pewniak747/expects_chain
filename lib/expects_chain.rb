@@ -2,6 +2,7 @@
 
 require 'expects_chain/expectation'
 require 'expects_chain/mockers/mocha'
+require 'expects_chain/mockers/rspec'
 
 module ExpectsChain
   module Methods

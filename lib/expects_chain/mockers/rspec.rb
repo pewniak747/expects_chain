@@ -1,28 +1,28 @@
 module ExpectsChain
   module Mockers
-    module Mocha
+    module Rspec
       def self.mock_object obj, method, ret
-        obj.expects(method).at_least_once.returns(ret)
+        obj.should_receive(method).and_return(ret)
       end
 
       def self.mock_object_with_arguments obj, method, attrs, ret
-        obj.expects(method).with(*attrs).at_least_once.returns(ret)
+        obj.should_receive(method).with(*attrs).and_return(ret)
       end
 
       def self.stub_object obj, method, ret
-        obj.stubs(method).returns(ret)
+        obj.stub!(method).and_return(ret)
       end
 
       def self.stub_object_with_arguments obj, method, attrs, ret
-        obj.stubs(method).with(*attrs).at_least_once.returns(ret)
+        obj.stub!(method).with(*attrs).and_return(ret)
       end
 
       def self.mock
-        ::Mocha::Mock.new(nil)
+        ::RSpec::Mocks::Mock.new(nil)
       end
 
       def self.stub
-        ::Mocha::Mock.new(nil)
+        ::RSpec::Mocks::Mock.new(nil)
       end
     end
   end
