@@ -15,6 +15,10 @@ module ExpectsChain
         @object = @object.returns(ret)
       end
 
+      def raises ex
+        @object.raises(generate_exception(ex))
+      end
+
       def self.mock
         ::Mocha::Mock.new(nil)
       end

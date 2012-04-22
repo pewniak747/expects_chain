@@ -34,4 +34,18 @@ describe ExpectsChain do
     @object.expects_chain([:foo, 1], [:bar, 2, 3], [:baz, 4]).returns(:boo)
     @object.foo(1).bar(2, 3).baz(4).should == :boo
   end
+
+  it "should raise proper exception of the class" do
+    @object.expects_chain(:foo, :bar, :baz).raises(StandardError)
+    -> { @object.foo.bar.baz }.should raise_error(StandardError)
+  end
+
+  it "should raise proper exception" do
+    @object.expects_chain(:foo, :bar, :baz).raises(StandardError.new('this is an error'))
+    begin @object.foo.bar.baz
+    rescue => e
+      e.message.should == 'this is an error'
+      e.class.to_s.should == 'StandardError'
+    end
+  end
 end

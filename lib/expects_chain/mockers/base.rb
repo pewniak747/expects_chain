@@ -9,6 +9,12 @@ module ExpectsChain
         @object = @object.with(*args)
         self
       end
+
+      private
+
+      def generate_exception object
+        object.is_a?(Class) ? object.new : object
+      end
     end
   end
 end

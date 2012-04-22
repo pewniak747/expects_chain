@@ -12,7 +12,11 @@ module ExpectsChain
       end
 
       def returns ret
-        @object = @object.and_return(ret)
+        @object.and_return(ret)
+      end
+
+      def raises ex
+        @object.and_raise(generate_exception(ex))
       end
 
       def self.mock
