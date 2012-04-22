@@ -11,6 +11,15 @@ module ExpectsChain
       value
     end
 
+    def self.mocker
+      if @_mocker.nil?
+        framework = RSpec.configuration.mock_framework.framework_name.to_s.capitalize.to_sym
+        raise StandardError.new("expects_chain unsupported framework: #{framework}") unless Mockers.constants.include?(framework)
+        @_mocker = Mockers::const_get(framework)
+      end
+      @_mocker
+    end
+
     private
 
     def set_up_call_chain value
@@ -32,12 +41,7 @@ module ExpectsChain
     end
 
     def mocker
-      if @_mocker.nil?
-        framework = RSpec.configuration.mock_framework.framework_name.to_s.capitalize.to_sym
-        raise StandardError.new("expects_chain unsupported framework: #{framework}") unless Mockers.constants.include?(framework)
-        @_mocker = Mockers::const_get(framework)
-      end
-      @_mocker
+      self.class.mocker
     end
   end
 end
