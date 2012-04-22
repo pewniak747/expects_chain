@@ -1,10 +1,10 @@
 # expects_chain
 
-## usage
-
 expects_chain is an extenstion to Rspec that allows you to set advanced chained expectations on objects. Think of it as Rspec's stub_chain but with mocking / stubbing / arguments support.
 
 Currently supports RSpec & Mocha.
+
+## usage
 
 With expects_chain you can do things like:
 
