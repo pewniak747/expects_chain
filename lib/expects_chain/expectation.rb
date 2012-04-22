@@ -33,10 +33,12 @@ module ExpectsChain
     end
 
     def set_expectation obj, method, ret
+      type = (@type == :mock ? :expects : :stubs)
+      rtype = :returns
       if method.kind_of?(Array) && method.first.kind_of?(Symbol)
-        mocker.send("#{@type}_object_with_arguments".to_sym, obj, method.shift, method, ret)
+        mocker.new(obj).send(type, method.shift).with(method).send(rtype, ret)
       else
-        mocker.send("#{@type}_object".to_sym, obj, method, ret)
+        mocker.new(obj).send(type, method).send(rtype, ret)
       end
     end
 

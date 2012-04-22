@@ -1,20 +1,18 @@
 module ExpectsChain
   module Mockers
-    module Mocha
-      def self.mock_object obj, method, ret
-        obj.expects(method).at_least_once.returns(ret)
+    class Mocha < Base
+      def expects method
+        @object = @object.expects(method).at_least_once
+        self
       end
 
-      def self.mock_object_with_arguments obj, method, attrs, ret
-        obj.expects(method).with(*attrs).at_least_once.returns(ret)
+      def stubs method
+        @object = @object.stubs(method)
+        self
       end
 
-      def self.stub_object obj, method, ret
-        obj.stubs(method).returns(ret)
-      end
-
-      def self.stub_object_with_arguments obj, method, attrs, ret
-        obj.stubs(method).with(*attrs).at_least_once.returns(ret)
+      def returns ret
+        @object = @object.returns(ret)
       end
 
       def self.mock

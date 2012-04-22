@@ -1,6 +1,7 @@
 # encoding: utf-8
 
 require 'expects_chain/expectation'
+require 'expects_chain/mockers/base'
 require 'expects_chain/mockers/mocha'
 require 'expects_chain/mockers/rspec'
 

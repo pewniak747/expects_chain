@@ -2,7 +2,7 @@ require 'spec_helper'
 
 describe ExpectsChain do
   before :each do
-    @object = OpenStruct.new
+    @object = Object.new
   end
 
   it "should mock 2 calls" do

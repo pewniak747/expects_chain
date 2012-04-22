@@ -1,20 +1,18 @@
 module ExpectsChain
   module Mockers
-    module Rspec
-      def self.mock_object obj, method, ret
-        obj.should_receive(method).and_return(ret)
+    class Rspec < Base
+      def expects method
+        @object = @object.should_receive(method)
+        self
       end
 
-      def self.mock_object_with_arguments obj, method, attrs, ret
-        obj.should_receive(method).with(*attrs).and_return(ret)
+      def stubs method
+        @object = @object.stub(method)
+        self
       end
 
-      def self.stub_object obj, method, ret
-        obj.stub(method).and_return(ret)
-      end
-
-      def self.stub_object_with_arguments obj, method, attrs, ret
-        obj.stub(method).with(*attrs).and_return(ret)
+      def returns ret
+        @object = @object.and_return(ret)
       end
 
       def self.mock
