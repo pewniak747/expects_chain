@@ -10,11 +10,11 @@ module ExpectsChain
       end
 
       def self.stub_object obj, method, ret
-        obj.stub!(method).and_return(ret)
+        obj.stub(method).and_return(ret)
       end
 
       def self.stub_object_with_arguments obj, method, attrs, ret
-        obj.stub!(method).with(*attrs).and_return(ret)
+        obj.stub(method).with(*attrs).and_return(ret)
       end
 
       def self.mock
